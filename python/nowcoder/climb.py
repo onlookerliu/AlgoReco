@@ -1,7 +1,7 @@
 # 一只青蛙可以跳上1级台阶，也可以跳上2级台阶，问它跳上n级台阶总共有多少种方法
 
-class Solution:
 
+class Solution:
     def resolve_v1(self, n):
         """
         Ways of climb n stairs
@@ -47,11 +47,14 @@ class Solution:
                 if lookup.get(n) is not None:
                     return lookup[n]
                 else:
+                    # 尽量节省fun函数运算的次数
+                    # 例如fib(5) = fib(3) + fib(4) = fib(3) + fib(3) + fib(2)
                     res = fun(n)
                     lookup[n] = res
                     return res
             return wrapped
 
+        # 装饰器写法
         @memoized
         def fib(n):
             if n == 1 or n == 2:
